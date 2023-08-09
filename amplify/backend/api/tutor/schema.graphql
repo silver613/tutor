@@ -1,0 +1,27 @@
+type UserModel @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	cognitoUserID: ID!
+	Lessons: [Lesson] @hasMany(indexName: "byUserModel", fields: ["id"])
+}
+
+enum LessonType {
+	SEMINAR
+	MIN30
+	MIN60
+}
+
+type Lesson @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	lessonTitle: String!
+	lessonCategoryID: ID! @index(name: "byCategory")
+	lessonPrice: Float!
+	lessonType: LessonType!
+	lessonDesc: String!
+	lessonOwnerID: ID! @index(name: "byUserModel")
+}
+
+type Category @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	categoryLabel: String!
+	Lessons: [Lesson] @hasMany(indexName: "byCategory", fields: ["id"])
+}

@@ -1,0 +1,50 @@
+{
+	"user": {
+		"username": "98dcyyh1@bestwing.anonaddy.com",
+		"pool": {
+			"userPoolId": "eu-central-1_MucjTntmC",
+			"clientId": "5ep7cr0d19iml75g0fujd6i3uo",
+			"client": {
+				"endpoint": "https://cognito-idp.eu-central-1.amazonaws.com/",
+				"fetchOptions": {}
+			},
+			"advancedSecurityDataCollectionFlag": true,
+			"storage": {
+				"cookies": {
+					"changeListeners": [],
+					"HAS_DOCUMENT_COOKIE": true,
+					"cookies": {}
+				},
+				"store": {
+					"amplify-auto-sign-in": "true"
+				}
+			}
+		},
+		"Session": null,
+		"client": {
+			"endpoint": "https://cognito-idp.eu-central-1.amazonaws.com/",
+			"fetchOptions": {}
+		},
+		"signInUserSession": null,
+		"authenticationFlowType": "USER_SRP_AUTH",
+		"storage": {
+			"cookies": {
+				"changeListeners": [],
+				"HAS_DOCUMENT_COOKIE": true,
+				"cookies": {}
+			},
+			"store": {
+				"amplify-auto-sign-in": "true"
+			}
+		},
+		"keyPrefix": "CognitoIdentityServiceProvider.5ep7cr0d19iml75g0fujd6i3uo",
+		"userDataKey": "CognitoIdentityServiceProvider.5ep7cr0d19iml75g0fujd6i3uo.98dcyyh1@bestwing.anonaddy.com.userData"
+	},
+	"userConfirmed": false,
+	"userSub": "9ac9a026-1a9b-4a1c-bd6c-681b0aeba115",
+	"codeDeliveryDetails": {
+		"AttributeName": "email",
+		"DeliveryMedium": "EMAIL",
+		"Destination": "9***@b***"
+	}
+}
