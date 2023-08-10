@@ -54,6 +54,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 // Phone number input
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import useUpdateUserInfo from '~/hooks/useUpdateUserInfo';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -99,6 +100,7 @@ const EditUserProfilePage = () => {
 	const [profile, setProfile] = useState<string>('');
 	const [avatar, setAvatar] = useState('');
 	const [timezone, setTimezone] = useState<any>();
+	const [trialPrice, setTrialPrice] = useState<number>(5);
 	const [isTeacher, setIsTeacher] = useState<boolean>(false);
 	const [meAsTeacher, setMeAsTeacher] = useState<string>();
 	const [lessonStyle, setLessonStyle] = useState<string>();
@@ -127,11 +129,10 @@ const EditUserProfilePage = () => {
 	const videoInputRef = useRef<HTMLInputElement | null>(null);
 
 	const router = useRouter();
+	const updateUserInfo = useUpdateUserInfo();
 
 	useEffect(() => {
 		getCurUser();
-		// handleCurrencyData();
-		console.log(CurrencyData.USD);
 	}, []);
 
 	// Language select
@@ -154,7 +155,6 @@ const EditUserProfilePage = () => {
 	async function getCurUser() {
 		try {
 			const curUser = await Auth.currentAuthenticatedUser();
-			console.log(curUser);
 			setUser(curUser);
 			const userAttr = curUser['attributes'];
 			setFirstName(userAttr['custom:first_name']);
@@ -186,7 +186,7 @@ const EditUserProfilePage = () => {
 		}
 	}
 
-	async function updateUser() {
+	function updateUser() {
 		const attributes: any = {
 			birthdate: JSON.stringify(birthday.$d).slice(1, 11),
 			gender: gender,
@@ -211,14 +211,13 @@ const EditUserProfilePage = () => {
 		if (meAsTeacher) attributes['custom:MAT'] = meAsTeacher;
 		if (lessonStyle) attributes['custom:LS'] = lessonStyle;
 		setSaving(true);
-		const res = await Auth.updateUserAttributes(user, attributes)
+		Auth.updateUserAttributes(user, attributes)
 			.then((res) => {
-				console.log(res);
 				setSaving(false);
+				updateUserInfo();
 				toast.success('Userinfo updated successfully');
 			})
 			.catch((err) => console.log(err));
-		return res;
 	}
 
 	const handleSubmit = (event: React.FormEvent) => {
@@ -521,7 +520,33 @@ const EditUserProfilePage = () => {
 										</Select>
 									</FormControl>
 								</div>
+
 								<div className="w-full p-2 sm:w-1/2">
+									<p>Currency</p>
+									<FormControl fullWidth size="small">
+										<Select
+											labelId="demo-simple-select-label"
+											id="demo-simple-select"
+											value={currency}
+											onChange={(e) => setCurrency(e.target.value)}
+										>
+											{currencyItems}
+										</Select>
+									</FormControl>
+								</div>
+								{!!+isTeacher && (
+									<div className="w-full p-2 sm:w-1/2">
+										<p>Your lesson&apos;s trial price</p>
+										<TextField
+											type="number"
+											size="small"
+											fullWidth
+											value={trialPrice}
+											onChange={(e) => setTrialPrice(Number(e.target.value))}
+										/>
+									</div>
+								)}
+								<div className={'w-full p-2 ' + (!+isTeacher && 'sm:w-1/2')}>
 									<p>Language</p>
 									<FormControl size="small" className="w-full">
 										<Select
@@ -555,22 +580,6 @@ const EditUserProfilePage = () => {
 													{option.label}
 												</MenuItem>
 											))}
-										</Select>
-									</FormControl>
-								</div>
-								<div className="w-full p-2 sm:w-1/2">
-									<p>Currency</p>
-									<FormControl fullWidth size="small">
-										<Select
-											labelId="demo-simple-select-label"
-											id="demo-simple-select"
-											value={currency}
-											onChange={(e) => setCurrency(e.target.value)}
-										>
-											{/* <MenuItem value={10}>Ten</MenuItem>
-											<MenuItem value={20}>Twenty</MenuItem>
-											<MenuItem value={30}>Thirty</MenuItem> */}
-											{currencyItems}
 										</Select>
 									</FormControl>
 								</div>

@@ -20,9 +20,9 @@ const filterSlice = createSlice({
 			return state;
 		},
 		removeSpd(state) {
-			state = state.filter((item) => item.type !== 'spd');
-			state = state.filter((item) => item.type !== 'dow');
-			return state;
+			// state = state.filter((item) => item.type !== 'spd');
+			// state = state.filter((item) => item.type !== 'dow');
+			return state.filter((item) => item.type !== 'spd' && item.type !== 'dow');
 		},
 	},
 });

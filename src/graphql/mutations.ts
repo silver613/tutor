@@ -13,12 +13,12 @@ export const createUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -43,12 +43,12 @@ export const updateUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -73,12 +73,12 @@ export const deleteUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -99,12 +99,12 @@ export const createLesson = /* GraphQL */ `
   ) {
     createLesson(input: $input, condition: $condition) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -118,12 +118,12 @@ export const updateLesson = /* GraphQL */ `
   ) {
     updateLesson(input: $input, condition: $condition) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -137,12 +137,12 @@ export const deleteLesson = /* GraphQL */ `
   ) {
     deleteLesson(input: $input, condition: $condition) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -156,16 +156,16 @@ export const createCategory = /* GraphQL */ `
   ) {
     createCategory(input: $input, condition: $condition) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -186,16 +186,16 @@ export const updateCategory = /* GraphQL */ `
   ) {
     updateCategory(input: $input, condition: $condition) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -216,16 +216,16 @@ export const deleteCategory = /* GraphQL */ `
   ) {
     deleteCategory(input: $input, condition: $condition) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename

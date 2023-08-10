@@ -10,12 +10,12 @@ export const getUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -42,12 +42,12 @@ export const listUserModels = /* GraphQL */ `
         Lessons {
           items {
             id
-            lessonTitle
-            lessonCategoryID
-            lessonPrice
-            lessonType
-            lessonDesc
-            lessonOwnerID
+            title
+            categoryID
+            price
+            type
+            description
+            ownerID
             createdAt
             updatedAt
             __typename
@@ -68,12 +68,12 @@ export const getLesson = /* GraphQL */ `
   query GetLesson($id: ID!) {
     getLesson(id: $id) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -89,76 +89,12 @@ export const listLessons = /* GraphQL */ `
     listLessons(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        lessonTitle
-        lessonCategoryID
-        lessonPrice
-        lessonType
-        lessonDesc
-        lessonOwnerID
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const lessonsByLessonCategoryID = /* GraphQL */ `
-  query LessonsByLessonCategoryID(
-    $lessonCategoryID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelLessonFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    lessonsByLessonCategoryID(
-      lessonCategoryID: $lessonCategoryID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        lessonTitle
-        lessonCategoryID
-        lessonPrice
-        lessonType
-        lessonDesc
-        lessonOwnerID
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const lessonsByLessonOwnerID = /* GraphQL */ `
-  query LessonsByLessonOwnerID(
-    $lessonOwnerID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelLessonFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    lessonsByLessonOwnerID(
-      lessonOwnerID: $lessonOwnerID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        lessonTitle
-        lessonCategoryID
-        lessonPrice
-        lessonType
-        lessonDesc
-        lessonOwnerID
+        title
+        categoryID
+        price
+        type
+        description
+        ownerID
         createdAt
         updatedAt
         __typename
@@ -172,16 +108,16 @@ export const getCategory = /* GraphQL */ `
   query GetCategory($id: ID!) {
     getCategory(id: $id) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -204,16 +140,16 @@ export const listCategories = /* GraphQL */ `
     listCategories(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        categoryLabel
+        label
         Lessons {
           items {
             id
-            lessonTitle
-            lessonCategoryID
-            lessonPrice
-            lessonType
-            lessonDesc
-            lessonOwnerID
+            title
+            categoryID
+            price
+            type
+            description
+            ownerID
             createdAt
             updatedAt
             __typename
@@ -221,6 +157,70 @@ export const listCategories = /* GraphQL */ `
           nextToken
           __typename
         }
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const lessonsByCategoryID = /* GraphQL */ `
+  query LessonsByCategoryID(
+    $categoryID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelLessonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    lessonsByCategoryID(
+      categoryID: $categoryID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        categoryID
+        price
+        type
+        description
+        ownerID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const lessonsByOwnerID = /* GraphQL */ `
+  query LessonsByOwnerID(
+    $ownerID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelLessonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    lessonsByOwnerID(
+      ownerID: $ownerID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        categoryID
+        price
+        type
+        description
+        ownerID
         createdAt
         updatedAt
         __typename

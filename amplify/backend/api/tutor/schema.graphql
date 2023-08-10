@@ -1,3 +1,8 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+	globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
 type UserModel @model @auth(rules: [{ allow: public }]) {
 	id: ID!
 	cognitoUserID: ID!
@@ -12,16 +17,16 @@ enum LessonType {
 
 type Lesson @model @auth(rules: [{ allow: public }]) {
 	id: ID!
-	lessonTitle: String!
-	lessonCategoryID: ID! @index(name: "byCategory")
-	lessonPrice: Float!
-	lessonType: LessonType!
-	lessonDesc: String!
-	lessonOwnerID: ID! @index(name: "byUserModel")
+	title: String!
+	categoryID: ID! @index(name: "byCategory")
+	price: Float!
+	type: LessonType!
+	description: String!
+	ownerID: ID! @index(name: "byUserModel")
 }
 
 type Category @model @auth(rules: [{ allow: public }]) {
 	id: ID!
-	categoryLabel: String!
+	label: String!
 	Lessons: [Lesson] @hasMany(indexName: "byCategory", fields: ["id"])
 }

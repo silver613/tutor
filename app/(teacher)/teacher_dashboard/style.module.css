@@ -1,0 +1,7 @@
+.activeButton {
+	@apply bg-primary-500 text-white;
+}
+
+.inactiveButton {
+	@apply bg-slate-50 text-primary-700;
+}

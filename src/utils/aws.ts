@@ -10,7 +10,7 @@ AWS.config.update({
 
 export const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
 
-export function updateCurUserCookie() {
+export function updateCurUser() {
 	Auth.currentAuthenticatedUser().then((user) => {
 		Cookies.set('curUser', JSON.stringify(user.attributes), { expires: 7 });
 	});

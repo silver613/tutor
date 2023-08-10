@@ -12,12 +12,12 @@ export const onCreateUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -41,12 +41,12 @@ export const onUpdateUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -70,12 +70,12 @@ export const onDeleteUserModel = /* GraphQL */ `
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -93,12 +93,12 @@ export const onCreateLesson = /* GraphQL */ `
   subscription OnCreateLesson($filter: ModelSubscriptionLessonFilterInput) {
     onCreateLesson(filter: $filter) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -109,12 +109,12 @@ export const onUpdateLesson = /* GraphQL */ `
   subscription OnUpdateLesson($filter: ModelSubscriptionLessonFilterInput) {
     onUpdateLesson(filter: $filter) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -125,12 +125,12 @@ export const onDeleteLesson = /* GraphQL */ `
   subscription OnDeleteLesson($filter: ModelSubscriptionLessonFilterInput) {
     onDeleteLesson(filter: $filter) {
       id
-      lessonTitle
-      lessonCategoryID
-      lessonPrice
-      lessonType
-      lessonDesc
-      lessonOwnerID
+      title
+      categoryID
+      price
+      type
+      description
+      ownerID
       createdAt
       updatedAt
       __typename
@@ -141,16 +141,16 @@ export const onCreateCategory = /* GraphQL */ `
   subscription OnCreateCategory($filter: ModelSubscriptionCategoryFilterInput) {
     onCreateCategory(filter: $filter) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -168,16 +168,16 @@ export const onUpdateCategory = /* GraphQL */ `
   subscription OnUpdateCategory($filter: ModelSubscriptionCategoryFilterInput) {
     onUpdateCategory(filter: $filter) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename
@@ -195,16 +195,16 @@ export const onDeleteCategory = /* GraphQL */ `
   subscription OnDeleteCategory($filter: ModelSubscriptionCategoryFilterInput) {
     onDeleteCategory(filter: $filter) {
       id
-      categoryLabel
+      label
       Lessons {
         items {
           id
-          lessonTitle
-          lessonCategoryID
-          lessonPrice
-          lessonType
-          lessonDesc
-          lessonOwnerID
+          title
+          categoryID
+          price
+          type
+          description
+          ownerID
           createdAt
           updatedAt
           __typename

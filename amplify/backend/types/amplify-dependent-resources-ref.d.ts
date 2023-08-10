@@ -7,7 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "tutor4c335199": {
+    "tutorbdc9c19a": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "s3963ddae0": {
+    "s3bf2d7188": {
       "BucketName": "string",
       "Region": "string"
     }

@@ -8,7 +8,7 @@ import VideoUploader from '~/components/common/VideoUploader';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { Auth } from 'aws-amplify';
-import { updateCurUserCookie } from '~/utils/aws';
+import useUpdateUserInfo from '~/hooks/useUpdateUserInfo';
 
 const BecomeTeacherPage = () => {
 	const [meAsTeacher, setMeAsTeacher] = useState<string>('');
@@ -22,11 +22,10 @@ const BecomeTeacherPage = () => {
 	const [curUser, setCurUser] = useState<any>();
 
 	const router = useRouter();
-
+	const updateUserInfo = useUpdateUserInfo();
 	useEffect(() => {
 		Auth.currentAuthenticatedUser()
 			.then((user) => {
-				console.log(user);
 				setCurUser(user);
 			})
 			.catch((err) => {
@@ -55,13 +54,13 @@ const BecomeTeacherPage = () => {
 				'custom:intro_video': videoName,
 				'custom:MAT': meAsTeacher,
 				'custom:LS': lessonStyle,
+				'custom:trial_price': 5,
 			};
 			Auth.updateUserAttributes(curUser, attributes)
 				.then((res) => {
 					setSaving(false);
-					updateCurUserCookie();
-					router.push('/teacher_dashboard');
-					console.log(res);
+					updateUserInfo();
+					router.push('/new_lesson');
 				})
 				.then((err) => {
 					console.error(err);

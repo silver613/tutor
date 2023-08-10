@@ -1,7 +1,7 @@
 {
-  "resourceName": "s3963ddae0",
-  "policyUUID": "963ddae0",
-  "bucketName": "tutorc800c7d6b1694316b0dd2720dc633cff",
+  "resourceName": "s3bf2d7188",
+  "policyUUID": "bf2d7188",
+  "bucketName": "tutorea91f38cdba64b319c15c3b4924d258e",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"
@@ -11,5 +11,6 @@
     "READ",
     "DELETE"
   ],
+  "triggerFunction": "NONE",
   "groupAccess": {}
 }

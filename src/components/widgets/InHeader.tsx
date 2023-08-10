@@ -31,24 +31,18 @@ import { Auth } from 'aws-amplify';
 import Logo from '~/components/atoms/Logo';
 import { useRouter } from 'next/navigation';
 import LoadingScreen from '../common/LoadingScreen';
-import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
+import { selectUser } from '~/slices/userSlice';
 
 function InHeader() {
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 	const [loading, setLoading] = React.useState(false);
 	const router = useRouter();
-	const [curUser, setCurUser] = React.useState();
-
+	const curUser = useSelector(selectUser);
 	React.useEffect(() => {
-		// const _curUser = Cookies.get('curUser');
-		// console.log(_curUser);
-		// const curUser = _curUser ? JSON.parse(_curUser) : null;
-		// setCurUser(curUser);
-		Auth.currentAuthenticatedUser()
-			.then((user) => setCurUser(user))
-			.catch((err) => console.log(err));
-	}, []);
+		// console.log(curUser['custom:is_teacher']);
+	}, [curUser]);
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElNav(event.currentTarget);
@@ -240,7 +234,7 @@ function InHeader() {
 									</ListItemIcon>
 									My User Profile
 								</MenuItem>
-								{Boolean(Number(curUser?.['attributes']['custom:is_teacher'])) ? (
+								{curUser && Boolean(Number(curUser['custom:is_teacher'])) ? (
 									<MenuItem onClick={() => redirect(`/tprof/${curUser?.['sub']}`)}>
 										<ListItemIcon>
 											<CoPresentIcon fontSize="small" />
@@ -255,15 +249,17 @@ function InHeader() {
 									</ListItemIcon>
 									Edit my profile
 								</MenuItem>
-								{!Boolean(Number(curUser?.['attributes']['custom:is_teacher'])) && (
-									<MenuItem onClick={() => redirect('/become_teacher')}>
-										<ListItemIcon>
-											<AssignmentIndIcon fontSize="small" />
-										</ListItemIcon>
-										Become a Teacher
-									</MenuItem>
-								)}
-								{Boolean(Number(curUser?.['attributes']['custom:is_teacher'])) && (
+								{curUser
+									? !Boolean(Number(curUser['custom:is_teacher'])) && (
+											<MenuItem onClick={() => redirect('/become_teacher')}>
+												<ListItemIcon>
+													<AssignmentIndIcon fontSize="small" />
+												</ListItemIcon>
+												Become a Teacher
+											</MenuItem>
+									  )
+									: null}
+								{curUser && Boolean(Number(curUser['custom:is_teacher'])) && (
 									<MenuItem onClick={() => router.push(`/new_lesson`)}>
 										<ListItemIcon>
 											<AddToPhotosIcon fontSize="small" />
@@ -271,7 +267,7 @@ function InHeader() {
 										Create a new Lesson
 									</MenuItem>
 								)}
-								{Boolean(Number(curUser?.['custom:is_teacher'])) && (
+								{curUser && Boolean(Number(curUser['custom:is_teacher'])) && (
 									<MenuItem onClick={() => router.push(`/teacher_dashboard`)}>
 										<ListItemIcon>
 											<DashboardIcon fontSize="small" />
