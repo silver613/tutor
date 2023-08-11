@@ -31,26 +31,24 @@ export default function NewCoach() {
 	}
 
 	function submitData(data: any) {
-		const newLessonData: CreateLessonInput = {
-			title: data.lessonTitle,
-			categoryID: data.lessonCategory,
-			price: data.price,
-			type: data.lessonType,
-			description: data.description,
-			ownerID: curUser.sub,
-		};
-		API.graphql<GraphQLQuery<CreateLessonMutation>>({
-			query: mutations.createLesson,
-			variables: {
-				input: newLessonData,
-			},
-		})
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
+		// const newLessonData: CreateLessonInput = {
+		// 	title: data.lessonTitle,
+		// 	price: data.price,
+		// 	type: data.lessonType,
+		// 	description: data.description,
+		// };
+		// API.graphql<GraphQLQuery<CreateLessonMutation>>({
+		// 	query: mutations.createLesson,
+		// 	variables: {
+		// 		input: newLessonData,
+		// 	},
+		// })
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.error(err);
+		// 	});
 	}
 
 	return (
@@ -88,6 +86,7 @@ export default function NewCoach() {
 						options={[
 							{ id: 'MIN30', label: '30min' },
 							{ id: 'MIN60', label: '60min' },
+							{ id: 'MIXED', label: 'Let student choose' },
 						]}
 					/>
 				</div>

@@ -15,9 +15,13 @@ import { CountryType } from '~/shared/types';
 import Spinner from '~/components/common/Spinner';
 import { toast } from 'react-toastify';
 import { countries } from '~/shared/data';
-import { getLocalTimezone } from '~/utils/utils';
-
 import VerifyModal from '../components/VerifyModal';
+// GraphQL imports
+import { API } from 'aws-amplify';
+import { GraphQLQuery } from '@aws-amplify/api';
+import * as queries from '~/graphql/queries';
+import * as mutations from '~/graphql/mutations';
+import { CreateUserInput, CreateUserMutation, User, CreateStudentInput, CreateStudentMutation, Student } from '~/API';
 
 // Set the datepicker's timezone as UTC
 dayjs.extend(utc);
@@ -71,6 +75,19 @@ export default function SignUpPage() {
 		} catch (error) {
 			throw error;
 		}
+	}
+
+	// Create a new User on DynamoDB
+	function CreateUser(cognitoUserID: string) {
+		const UserData: CreateUserInput = {
+			cognitoUserID: cognitoUserID,
+		};
+		API.graphql<GraphQLQuery<CreateUserMutation>>({
+			query: mutations.createUser,
+			variables: {
+				input: UserData,
+			},
+		});
 	}
 
 	function isValidPwd(password: string, confirmPassword: string): boolean {
@@ -129,7 +146,7 @@ export default function SignUpPage() {
 				.then((res) => {
 					console.log(res);
 					setSpin(false);
-					setIsModalOpen(true);
+					setIsModalOpen(true); // redirect to signIn page in the modal
 				})
 				.catch((err) => {
 					console.log(err);

@@ -1,69 +1,30 @@
-type Seminar @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  teacherID: ID! @index(name: "byTeacher")
-  topic: String
-  Category: Category @hasOne
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/auth
+input AMPLIFY {
+	globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type User @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	cognitoUserID: ID!
+	Teacher: Teacher @hasOne
+	Student: Student @hasOne
 }
 
-type Transaction @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  studentID: ID! @index(name: "byStudent")
-  teacherID: ID! @index(name: "byTeacher")
-  amount: Float
-  gateway: String
+type Teacher @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	user: User @belongsTo(fields: ["userId"])
+	userId: ID!
+	Lessons: [Lesson] @hasMany(indexName: "byTeacher", fields: ["teacherID"])
 }
 
-type Contract @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  teacherID: ID! @index(name: "byTeacher")
-  studentID: ID! @index(name: "byStudent")
-  Lesson: Lesson @hasOne
-  status: String
-  channelType: String
-  channelURL: String
-  fromTime: String
-  toTime: String
-  packCount: String
-  feedback: String
-  quality: String
-  clarity: String
-  communication: String
-  kindness: String
+type Student @model @auth(rules: [{ allow: public }]) {
+	id: ID!
+	user: User @belongsTo(fields: ["userId"])
+	userId: ID!
 }
 
-type Student @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  Contracts: [Contract] @hasMany(indexName: "byStudent", fields: ["id"])
-  Transactions: [Transaction] @hasMany(indexName: "byStudent", fields: ["id"])
+type Lesson @model {
+	id: ID!
+	title: string!
+	teacherID: ID!
 }
-
-type Teacher @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  Lessons: [Lesson] @hasMany(indexName: "byTeacher", fields: ["id"])
-  Contracts: [Contract] @hasMany(indexName: "byTeacher", fields: ["id"])
-  Transactions: [Transaction] @hasMany(indexName: "byTeacher", fields: ["id"])
-  Seminars: [Seminar] @hasMany(indexName: "byTeacher", fields: ["id"])
-}
-
-type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  cognitoUserID: ID!
-  Student: Student @hasOne
-  Teacher: Teacher @hasOne
-}
-
-type Lesson @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  title: String!
-  price: Float!
-  type: String!
-  description: String!
-  teacherID: ID! @index(name: "byTeacher")
-  Category: Category @hasOne
-}
-
-type Category @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  label: String!
-}
- 

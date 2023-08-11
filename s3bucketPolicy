@@ -10,3 +10,73 @@
 		}
 	]
 }
+
+
+type Seminar @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  teacherID: ID! @index(name: "byTeacher")
+  topic: String
+  Category: Category @hasOne
+}
+
+type Transaction @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  studentID: ID! @index(name: "byStudent")
+  teacherID: ID! @index(name: "byTeacher")
+  amount: Float
+  gateway: String
+}
+
+type Contract @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  teacherID: ID! @index(name: "byTeacher")
+  studentID: ID! @index(name: "byStudent")
+  Lesson: Lesson @hasOne
+  status: String
+  channelType: String
+  channelURL: String
+  fromTime: String
+  toTime: String
+  packCount: String
+  feedback: String
+  quality: String
+  clarity: String
+  communication: String
+  kindness: String
+}
+
+type Student @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Contracts: [Contract] @hasMany(indexName: "byStudent", fields: ["id"])
+  Transactions: [Transaction] @hasMany(indexName: "byStudent", fields: ["id"])
+}
+
+type Teacher @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Lessons: [Lesson] @hasMany(indexName: "byTeacher", fields: ["id"])
+  Contracts: [Contract] @hasMany(indexName: "byTeacher", fields: ["id"])
+  Transactions: [Transaction] @hasMany(indexName: "byTeacher", fields: ["id"])
+  Seminars: [Seminar] @hasMany(indexName: "byTeacher", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  cognitoUserID: ID!
+  Student: Student @hasOne
+  Teacher: Teacher @hasOne
+}
+
+type Lesson @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  price: Float!
+  type: String!
+  description: String!
+  teacherID: ID! @index(name: "byTeacher")
+  Category: Category @hasOne
+}
+
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  label: String!
+}
