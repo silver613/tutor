@@ -115,7 +115,7 @@ function InHeader() {
 									display: { xs: 'block', md: 'none' },
 								}}
 							>
-								<MenuItem onClick={() => router.push('/studash')}>
+								<MenuItem onClick={() => router.push('/learn')}>
 									<ListItemIcon>
 										<CastForEducationIcon fontSize="small" color="primary" />
 									</ListItemIcon>
@@ -144,7 +144,7 @@ function InHeader() {
 						<Logo className="mx-auto flex md:hidden" width={40} height={40} />
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
 							<Button
-								onClick={() => router.push('/dashboard')}
+								onClick={() => router.push('/learn')}
 								sx={{
 									my: 2,
 									display: 'block',

@@ -19,12 +19,6 @@ const CoachCard = () => {
 		<>
 			<div className="m-auto w-full transform overflow-hidden rounded-lg bg-white shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-xl">
 				<div className="w-full">
-					{/* eslint-disable-next-line @next/next/no-img-element */}
-					{/* <img
-							alt="blog photo"
-							src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
-							className="max-h-40 w-full object-cover"
-						/> */}
 					<video src="/video/mov_bbb.mp4" className="w-full" controls></video>
 					{/* <ReactPlayer url="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" /> */}
 				</div>

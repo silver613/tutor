@@ -88,7 +88,6 @@ export default function NewCoach() {
 						options={[
 							{ id: 'MIN30', label: '30min' },
 							{ id: 'MIN60', label: '60min' },
-							{ id: 'SEMINAR', label: 'Seminar' },
 						]}
 					/>
 				</div>
