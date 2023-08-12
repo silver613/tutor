@@ -2,7 +2,7 @@
 
 import { Auth } from 'aws-amplify';
 import { TextField, Select, FormControl, MenuItem } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -22,6 +22,7 @@ import { GraphQLQuery } from '@aws-amplify/api';
 import * as queries from '~/graphql/queries';
 import * as mutations from '~/graphql/mutations';
 import { CreateUserInput, CreateUserMutation, User, CreateStudentInput, CreateStudentMutation, Student } from '~/API';
+import { CreateAcceleratorResponse } from 'aws-sdk/clients/globalaccelerator';
 
 // Set the datepicker's timezone as UTC
 dayjs.extend(utc);
@@ -71,6 +72,7 @@ export default function SignUpPage() {
 					enabled: true,
 				},
 			});
+			CreateUser(signUpResult.userSub);
 			return signUpResult;
 		} catch (error) {
 			throw error;
@@ -78,16 +80,44 @@ export default function SignUpPage() {
 	}
 
 	// Create a new User on DynamoDB
-	function CreateUser(cognitoUserID: string) {
+	async function CreateUser(cognitoUserID: string) {
+		const studentData = await CreateStudent();
+		const studentID = studentData?.createStudent?.id;
+		console.log('StudentID :', studentID);
+		console.log('StudentData :', studentData);
+
 		const UserData: CreateUserInput = {
 			cognitoUserID: cognitoUserID,
+			userStudentId: studentID,
 		};
-		API.graphql<GraphQLQuery<CreateUserMutation>>({
-			query: mutations.createUser,
-			variables: {
-				input: UserData,
-			},
-		});
+		try {
+			const userdata = await API.graphql<GraphQLQuery<CreateUserInput>>({
+				query: mutations.createUser,
+				variables: {
+					input: UserData,
+				},
+			});
+			console.log('Crated USer data', userdata);
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	async function CreateStudent() {
+		try {
+			const StudentData: CreateStudentInput = {
+				testStudent: 'a student',
+			};
+			const { data: studentData } = await API.graphql<GraphQLQuery<CreateStudentMutation>>({
+				query: mutations.createStudent,
+				variables: {
+					input: StudentData,
+				},
+			});
+			return studentData;
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	function isValidPwd(password: string, confirmPassword: string): boolean {
@@ -145,6 +175,7 @@ export default function SignUpPage() {
 			Register()
 				.then((res) => {
 					console.log(res);
+					CreateUser(res.userSub);
 					setSpin(false);
 					setIsModalOpen(true); // redirect to signIn page in the modal
 				})
