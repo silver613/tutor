@@ -104,6 +104,7 @@ export default function SignUpPage() {
 	}
 
 	async function CreateStudent() {
+		// test
 		try {
 			const StudentData: CreateStudentInput = {
 				testStudent: 'a student',
