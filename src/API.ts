@@ -2,19 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTeacherInput = {
+export type CreateSeminarInput = {
   id?: string | null,
-  testTeacher?: string | null,
+  userID: string,
 };
 
-export type ModelTeacherConditionInput = {
-  testTeacher?: ModelStringInput | null,
-  and?: Array< ModelTeacherConditionInput | null > | null,
-  or?: Array< ModelTeacherConditionInput | null > | null,
-  not?: ModelTeacherConditionInput | null,
+export type ModelSeminarConditionInput = {
+  userID?: ModelIDInput | null,
+  and?: Array< ModelSeminarConditionInput | null > | null,
+  or?: Array< ModelSeminarConditionInput | null > | null,
+  not?: ModelSeminarConditionInput | null,
 };
 
-export type ModelStringInput = {
+export type ModelIDInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -54,69 +54,50 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Teacher = {
-  __typename: "Teacher",
+export type Seminar = {
+  __typename: "Seminar",
   id: string,
-  testTeacher?: string | null,
+  userID: string,
   createdAt: string,
   updatedAt: string,
 };
 
-export type UpdateTeacherInput = {
+export type UpdateSeminarInput = {
   id: string,
-  testTeacher?: string | null,
+  userID?: string | null,
 };
 
-export type DeleteTeacherInput = {
+export type DeleteSeminarInput = {
   id: string,
 };
 
-export type CreateStudentInput = {
+export type CreateLessonInput = {
   id?: string | null,
-  testStudent?: string | null,
+  userID: string,
+  title?: string | null,
+  price?: number | null,
+  currency?: string | null,
+  type?: string | null,
+  category?: string | null,
+  description?: string | null,
+  languages?: string | null,
 };
 
-export type ModelStudentConditionInput = {
-  testStudent?: ModelStringInput | null,
-  and?: Array< ModelStudentConditionInput | null > | null,
-  or?: Array< ModelStudentConditionInput | null > | null,
-  not?: ModelStudentConditionInput | null,
+export type ModelLessonConditionInput = {
+  userID?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  price?: ModelFloatInput | null,
+  currency?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  languages?: ModelStringInput | null,
+  and?: Array< ModelLessonConditionInput | null > | null,
+  or?: Array< ModelLessonConditionInput | null > | null,
+  not?: ModelLessonConditionInput | null,
 };
 
-export type Student = {
-  __typename: "Student",
-  id: string,
-  testStudent?: string | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateStudentInput = {
-  id: string,
-  testStudent?: string | null,
-};
-
-export type DeleteStudentInput = {
-  id: string,
-};
-
-export type CreateUserInput = {
-  id?: string | null,
-  cognitoUserID: string,
-  userStudentId?: string | null,
-  userTeacherId?: string | null,
-};
-
-export type ModelUserConditionInput = {
-  cognitoUserID?: ModelIDInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
-  userStudentId?: ModelIDInput | null,
-  userTeacherId?: ModelIDInput | null,
-};
-
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -132,65 +113,132 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Lesson = {
+  __typename: "Lesson",
+  id: string,
+  userID: string,
+  title?: string | null,
+  price?: number | null,
+  currency?: string | null,
+  type?: string | null,
+  category?: string | null,
+  description?: string | null,
+  languages?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateLessonInput = {
+  id: string,
+  userID?: string | null,
+  title?: string | null,
+  price?: number | null,
+  currency?: string | null,
+  type?: string | null,
+  category?: string | null,
+  description?: string | null,
+  languages?: string | null,
+};
+
+export type DeleteLessonInput = {
+  id: string,
+};
+
+export type CreateUserInput = {
+  id?: string | null,
+  cognitoUserID: string,
+  balance?: number | null,
+};
+
+export type ModelUserConditionInput = {
+  cognitoUserID?: ModelIDInput | null,
+  balance?: ModelFloatInput | null,
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
+};
+
 export type User = {
   __typename: "User",
   id: string,
   cognitoUserID: string,
-  Student?: Student | null,
-  Teacher?: Teacher | null,
+  balance?: number | null,
+  Lessons?: ModelLessonConnection | null,
+  Seminars?: ModelSeminarConnection | null,
   createdAt: string,
   updatedAt: string,
-  userStudentId?: string | null,
-  userTeacherId?: string | null,
+};
+
+export type ModelLessonConnection = {
+  __typename: "ModelLessonConnection",
+  items:  Array<Lesson | null >,
+  nextToken?: string | null,
+};
+
+export type ModelSeminarConnection = {
+  __typename: "ModelSeminarConnection",
+  items:  Array<Seminar | null >,
+  nextToken?: string | null,
 };
 
 export type UpdateUserInput = {
   id: string,
   cognitoUserID?: string | null,
-  userStudentId?: string | null,
-  userTeacherId?: string | null,
+  balance?: number | null,
 };
 
 export type DeleteUserInput = {
   id: string,
 };
 
-export type ModelTeacherFilterInput = {
+export type ModelSeminarFilterInput = {
   id?: ModelIDInput | null,
-  testTeacher?: ModelStringInput | null,
-  and?: Array< ModelTeacherFilterInput | null > | null,
-  or?: Array< ModelTeacherFilterInput | null > | null,
-  not?: ModelTeacherFilterInput | null,
+  userID?: ModelIDInput | null,
+  and?: Array< ModelSeminarFilterInput | null > | null,
+  or?: Array< ModelSeminarFilterInput | null > | null,
+  not?: ModelSeminarFilterInput | null,
 };
 
-export type ModelTeacherConnection = {
-  __typename: "ModelTeacherConnection",
-  items:  Array<Teacher | null >,
-  nextToken?: string | null,
-};
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
 
-export type ModelStudentFilterInput = {
+
+export type ModelLessonFilterInput = {
   id?: ModelIDInput | null,
-  testStudent?: ModelStringInput | null,
-  and?: Array< ModelStudentFilterInput | null > | null,
-  or?: Array< ModelStudentFilterInput | null > | null,
-  not?: ModelStudentFilterInput | null,
-};
-
-export type ModelStudentConnection = {
-  __typename: "ModelStudentConnection",
-  items:  Array<Student | null >,
-  nextToken?: string | null,
+  userID?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  price?: ModelFloatInput | null,
+  currency?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  languages?: ModelStringInput | null,
+  and?: Array< ModelLessonFilterInput | null > | null,
+  or?: Array< ModelLessonFilterInput | null > | null,
+  not?: ModelLessonFilterInput | null,
 };
 
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   cognitoUserID?: ModelIDInput | null,
+  balance?: ModelFloatInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
-  userStudentId?: ModelIDInput | null,
-  userTeacherId?: ModelIDInput | null,
 };
 
 export type ModelUserConnection = {
@@ -199,11 +247,11 @@ export type ModelUserConnection = {
   nextToken?: string | null,
 };
 
-export type ModelSubscriptionTeacherFilterInput = {
+export type ModelSubscriptionSeminarFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  testTeacher?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionTeacherFilterInput | null > | null,
-  or?: Array< ModelSubscriptionTeacherFilterInput | null > | null,
+  userID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionSeminarFilterInput | null > | null,
+  or?: Array< ModelSubscriptionSeminarFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -221,6 +269,20 @@ export type ModelSubscriptionIDInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionLessonFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  userID?: ModelSubscriptionIDInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  price?: ModelSubscriptionFloatInput | null,
+  currency?: ModelSubscriptionStringInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  category?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  languages?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionLessonFilterInput | null > | null,
+  or?: Array< ModelSubscriptionLessonFilterInput | null > | null,
+};
+
 export type ModelSubscriptionStringInput = {
   ne?: string | null,
   eq?: string | null,
@@ -236,105 +298,132 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionStudentFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  testStudent?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionStudentFilterInput | null > | null,
-  or?: Array< ModelSubscriptionStudentFilterInput | null > | null,
+export type ModelSubscriptionFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
 };
 
 export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   cognitoUserID?: ModelSubscriptionIDInput | null,
+  balance?: ModelSubscriptionFloatInput | null,
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
   or?: Array< ModelSubscriptionUserFilterInput | null > | null,
 };
 
-export type CreateTeacherMutationVariables = {
-  input: CreateTeacherInput,
-  condition?: ModelTeacherConditionInput | null,
+export type CreateSeminarMutationVariables = {
+  input: CreateSeminarInput,
+  condition?: ModelSeminarConditionInput | null,
 };
 
-export type CreateTeacherMutation = {
-  createTeacher?:  {
-    __typename: "Teacher",
+export type CreateSeminarMutation = {
+  createSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type UpdateTeacherMutationVariables = {
-  input: UpdateTeacherInput,
-  condition?: ModelTeacherConditionInput | null,
+export type UpdateSeminarMutationVariables = {
+  input: UpdateSeminarInput,
+  condition?: ModelSeminarConditionInput | null,
 };
 
-export type UpdateTeacherMutation = {
-  updateTeacher?:  {
-    __typename: "Teacher",
+export type UpdateSeminarMutation = {
+  updateSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type DeleteTeacherMutationVariables = {
-  input: DeleteTeacherInput,
-  condition?: ModelTeacherConditionInput | null,
+export type DeleteSeminarMutationVariables = {
+  input: DeleteSeminarInput,
+  condition?: ModelSeminarConditionInput | null,
 };
 
-export type DeleteTeacherMutation = {
-  deleteTeacher?:  {
-    __typename: "Teacher",
+export type DeleteSeminarMutation = {
+  deleteSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type CreateStudentMutationVariables = {
-  input: CreateStudentInput,
-  condition?: ModelStudentConditionInput | null,
+export type CreateLessonMutationVariables = {
+  input: CreateLessonInput,
+  condition?: ModelLessonConditionInput | null,
 };
 
-export type CreateStudentMutation = {
-  createStudent?:  {
-    __typename: "Student",
+export type CreateLessonMutation = {
+  createLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type UpdateStudentMutationVariables = {
-  input: UpdateStudentInput,
-  condition?: ModelStudentConditionInput | null,
+export type UpdateLessonMutationVariables = {
+  input: UpdateLessonInput,
+  condition?: ModelLessonConditionInput | null,
 };
 
-export type UpdateStudentMutation = {
-  updateStudent?:  {
-    __typename: "Student",
+export type UpdateLessonMutation = {
+  updateLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type DeleteStudentMutationVariables = {
-  input: DeleteStudentInput,
-  condition?: ModelStudentConditionInput | null,
+export type DeleteLessonMutationVariables = {
+  input: DeleteLessonInput,
+  condition?: ModelLessonConditionInput | null,
 };
 
-export type DeleteStudentMutation = {
-  deleteStudent?:  {
-    __typename: "Student",
+export type DeleteLessonMutation = {
+  deleteLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -350,24 +439,38 @@ export type CreateUserMutation = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
@@ -381,24 +484,38 @@ export type UpdateUserMutation = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
@@ -412,54 +529,68 @@ export type DeleteUserMutation = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
-export type GetTeacherQueryVariables = {
+export type GetSeminarQueryVariables = {
   id: string,
 };
 
-export type GetTeacherQuery = {
-  getTeacher?:  {
-    __typename: "Teacher",
+export type GetSeminarQuery = {
+  getSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListTeachersQueryVariables = {
-  filter?: ModelTeacherFilterInput | null,
+export type ListSeminarsQueryVariables = {
+  filter?: ModelSeminarFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTeachersQuery = {
-  listTeachers?:  {
-    __typename: "ModelTeacherConnection",
+export type ListSeminarsQuery = {
+  listSeminars?:  {
+    __typename: "ModelSeminarConnection",
     items:  Array< {
-      __typename: "Teacher",
+      __typename: "Seminar",
       id: string,
-      testTeacher?: string | null,
+      userID: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -467,33 +598,98 @@ export type ListTeachersQuery = {
   } | null,
 };
 
-export type GetStudentQueryVariables = {
+export type SeminarsByUserIDQueryVariables = {
+  userID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelSeminarFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SeminarsByUserIDQuery = {
+  seminarsByUserID?:  {
+    __typename: "ModelSeminarConnection",
+    items:  Array< {
+      __typename: "Seminar",
+      id: string,
+      userID: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetLessonQueryVariables = {
   id: string,
 };
 
-export type GetStudentQuery = {
-  getStudent?:  {
-    __typename: "Student",
+export type GetLessonQuery = {
+  getLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListStudentsQueryVariables = {
-  filter?: ModelStudentFilterInput | null,
+export type ListLessonsQueryVariables = {
+  filter?: ModelLessonFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListStudentsQuery = {
-  listStudents?:  {
-    __typename: "ModelStudentConnection",
+export type ListLessonsQuery = {
+  listLessons?:  {
+    __typename: "ModelLessonConnection",
     items:  Array< {
-      __typename: "Student",
+      __typename: "Lesson",
       id: string,
-      testStudent?: string | null,
+      userID: string,
+      title?: string | null,
+      price?: number | null,
+      currency?: string | null,
+      type?: string | null,
+      category?: string | null,
+      description?: string | null,
+      languages?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type LessonsByUserIDQueryVariables = {
+  userID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelLessonFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type LessonsByUserIDQuery = {
+  lessonsByUserID?:  {
+    __typename: "ModelLessonConnection",
+    items:  Array< {
+      __typename: "Lesson",
+      id: string,
+      userID: string,
+      title?: string | null,
+      price?: number | null,
+      currency?: string | null,
+      type?: string | null,
+      category?: string | null,
+      description?: string | null,
+      languages?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -510,24 +706,38 @@ export type GetUserQuery = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
@@ -544,108 +754,143 @@ export type ListUsersQuery = {
       __typename: "User",
       id: string,
       cognitoUserID: string,
-      Student?:  {
-        __typename: "Student",
-        id: string,
-        testStudent?: string | null,
-        createdAt: string,
-        updatedAt: string,
+      balance?: number | null,
+      Lessons?:  {
+        __typename: "ModelLessonConnection",
+        items:  Array< {
+          __typename: "Lesson",
+          id: string,
+          userID: string,
+          title?: string | null,
+          price?: number | null,
+          currency?: string | null,
+          type?: string | null,
+          category?: string | null,
+          description?: string | null,
+          languages?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
       } | null,
-      Teacher?:  {
-        __typename: "Teacher",
-        id: string,
-        testTeacher?: string | null,
-        createdAt: string,
-        updatedAt: string,
+      Seminars?:  {
+        __typename: "ModelSeminarConnection",
+        items:  Array< {
+          __typename: "Seminar",
+          id: string,
+          userID: string,
+          createdAt: string,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      userStudentId?: string | null,
-      userTeacherId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
 };
 
-export type OnCreateTeacherSubscriptionVariables = {
-  filter?: ModelSubscriptionTeacherFilterInput | null,
+export type OnCreateSeminarSubscriptionVariables = {
+  filter?: ModelSubscriptionSeminarFilterInput | null,
 };
 
-export type OnCreateTeacherSubscription = {
-  onCreateTeacher?:  {
-    __typename: "Teacher",
+export type OnCreateSeminarSubscription = {
+  onCreateSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateTeacherSubscriptionVariables = {
-  filter?: ModelSubscriptionTeacherFilterInput | null,
+export type OnUpdateSeminarSubscriptionVariables = {
+  filter?: ModelSubscriptionSeminarFilterInput | null,
 };
 
-export type OnUpdateTeacherSubscription = {
-  onUpdateTeacher?:  {
-    __typename: "Teacher",
+export type OnUpdateSeminarSubscription = {
+  onUpdateSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteTeacherSubscriptionVariables = {
-  filter?: ModelSubscriptionTeacherFilterInput | null,
+export type OnDeleteSeminarSubscriptionVariables = {
+  filter?: ModelSubscriptionSeminarFilterInput | null,
 };
 
-export type OnDeleteTeacherSubscription = {
-  onDeleteTeacher?:  {
-    __typename: "Teacher",
+export type OnDeleteSeminarSubscription = {
+  onDeleteSeminar?:  {
+    __typename: "Seminar",
     id: string,
-    testTeacher?: string | null,
+    userID: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnCreateStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
+export type OnCreateLessonSubscriptionVariables = {
+  filter?: ModelSubscriptionLessonFilterInput | null,
 };
 
-export type OnCreateStudentSubscription = {
-  onCreateStudent?:  {
-    __typename: "Student",
+export type OnCreateLessonSubscription = {
+  onCreateLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
+export type OnUpdateLessonSubscriptionVariables = {
+  filter?: ModelSubscriptionLessonFilterInput | null,
 };
 
-export type OnUpdateStudentSubscription = {
-  onUpdateStudent?:  {
-    __typename: "Student",
+export type OnUpdateLessonSubscription = {
+  onUpdateLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
+export type OnDeleteLessonSubscriptionVariables = {
+  filter?: ModelSubscriptionLessonFilterInput | null,
 };
 
-export type OnDeleteStudentSubscription = {
-  onDeleteStudent?:  {
-    __typename: "Student",
+export type OnDeleteLessonSubscription = {
+  onDeleteLesson?:  {
+    __typename: "Lesson",
     id: string,
-    testStudent?: string | null,
+    userID: string,
+    title?: string | null,
+    price?: number | null,
+    currency?: string | null,
+    type?: string | null,
+    category?: string | null,
+    description?: string | null,
+    languages?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -660,24 +905,38 @@ export type OnCreateUserSubscription = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
@@ -690,24 +949,38 @@ export type OnUpdateUserSubscription = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };
 
@@ -720,23 +993,37 @@ export type OnDeleteUserSubscription = {
     __typename: "User",
     id: string,
     cognitoUserID: string,
-    Student?:  {
-      __typename: "Student",
-      id: string,
-      testStudent?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    balance?: number | null,
+    Lessons?:  {
+      __typename: "ModelLessonConnection",
+      items:  Array< {
+        __typename: "Lesson",
+        id: string,
+        userID: string,
+        title?: string | null,
+        price?: number | null,
+        currency?: string | null,
+        type?: string | null,
+        category?: string | null,
+        description?: string | null,
+        languages?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
-    Teacher?:  {
-      __typename: "Teacher",
-      id: string,
-      testTeacher?: string | null,
-      createdAt: string,
-      updatedAt: string,
+    Seminars?:  {
+      __typename: "ModelSeminarConnection",
+      items:  Array< {
+        __typename: "Seminar",
+        id: string,
+        userID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    userStudentId?: string | null,
-    userTeacherId?: string | null,
   } | null,
 };

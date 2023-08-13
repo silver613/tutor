@@ -1,17 +1,25 @@
-type Teacher @model @auth(rules: [{allow: public}]) {
+type Seminar @model @auth(rules: [{allow: public}]) {
   id: ID!
-  testTeacher: String
+  userID: ID! @index(name: "byUser")
 }
 
-type Student @model @auth(rules: [{allow: public}]) {
+type Lesson @model @auth(rules: [{allow: public}]) {
   id: ID!
-  testStudent: String
+  userID: ID! @index(name: "byUser")
+  title: String
+  price: Float
+  currency: String
+  type: String
+  category: String
+  description: String
+  languages: String
 }
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   cognitoUserID: ID!
-  Student: Student @hasOne
-  Teacher: Teacher @hasOne
+  balance: Float
+  Lessons: [Lesson] @hasMany(indexName: "byUser", fields: ["id"])
+  Seminars: [Seminar] @hasMany(indexName: "byUser", fields: ["id"])
 }
  

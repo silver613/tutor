@@ -2,66 +2,87 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTeacher = /* GraphQL */ `
-  subscription OnCreateTeacher($filter: ModelSubscriptionTeacherFilterInput) {
-    onCreateTeacher(filter: $filter) {
+export const onCreateSeminar = /* GraphQL */ `
+  subscription OnCreateSeminar($filter: ModelSubscriptionSeminarFilterInput) {
+    onCreateSeminar(filter: $filter) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onUpdateTeacher = /* GraphQL */ `
-  subscription OnUpdateTeacher($filter: ModelSubscriptionTeacherFilterInput) {
-    onUpdateTeacher(filter: $filter) {
+export const onUpdateSeminar = /* GraphQL */ `
+  subscription OnUpdateSeminar($filter: ModelSubscriptionSeminarFilterInput) {
+    onUpdateSeminar(filter: $filter) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onDeleteTeacher = /* GraphQL */ `
-  subscription OnDeleteTeacher($filter: ModelSubscriptionTeacherFilterInput) {
-    onDeleteTeacher(filter: $filter) {
+export const onDeleteSeminar = /* GraphQL */ `
+  subscription OnDeleteSeminar($filter: ModelSubscriptionSeminarFilterInput) {
+    onDeleteSeminar(filter: $filter) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onCreateStudent = /* GraphQL */ `
-  subscription OnCreateStudent($filter: ModelSubscriptionStudentFilterInput) {
-    onCreateStudent(filter: $filter) {
+export const onCreateLesson = /* GraphQL */ `
+  subscription OnCreateLesson($filter: ModelSubscriptionLessonFilterInput) {
+    onCreateLesson(filter: $filter) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onUpdateStudent = /* GraphQL */ `
-  subscription OnUpdateStudent($filter: ModelSubscriptionStudentFilterInput) {
-    onUpdateStudent(filter: $filter) {
+export const onUpdateLesson = /* GraphQL */ `
+  subscription OnUpdateLesson($filter: ModelSubscriptionLessonFilterInput) {
+    onUpdateLesson(filter: $filter) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onDeleteStudent = /* GraphQL */ `
-  subscription OnDeleteStudent($filter: ModelSubscriptionStudentFilterInput) {
-    onDeleteStudent(filter: $filter) {
+export const onDeleteLesson = /* GraphQL */ `
+  subscription OnDeleteLesson($filter: ModelSubscriptionLessonFilterInput) {
+    onDeleteLesson(filter: $filter) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
@@ -73,24 +94,38 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(filter: $filter) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }
@@ -100,24 +135,38 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(filter: $filter) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }
@@ -127,24 +176,38 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(filter: $filter) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }

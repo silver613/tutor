@@ -2,84 +2,105 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTeacher = /* GraphQL */ `
-  mutation CreateTeacher(
-    $input: CreateTeacherInput!
-    $condition: ModelTeacherConditionInput
+export const createSeminar = /* GraphQL */ `
+  mutation CreateSeminar(
+    $input: CreateSeminarInput!
+    $condition: ModelSeminarConditionInput
   ) {
-    createTeacher(input: $input, condition: $condition) {
+    createSeminar(input: $input, condition: $condition) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const updateTeacher = /* GraphQL */ `
-  mutation UpdateTeacher(
-    $input: UpdateTeacherInput!
-    $condition: ModelTeacherConditionInput
+export const updateSeminar = /* GraphQL */ `
+  mutation UpdateSeminar(
+    $input: UpdateSeminarInput!
+    $condition: ModelSeminarConditionInput
   ) {
-    updateTeacher(input: $input, condition: $condition) {
+    updateSeminar(input: $input, condition: $condition) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const deleteTeacher = /* GraphQL */ `
-  mutation DeleteTeacher(
-    $input: DeleteTeacherInput!
-    $condition: ModelTeacherConditionInput
+export const deleteSeminar = /* GraphQL */ `
+  mutation DeleteSeminar(
+    $input: DeleteSeminarInput!
+    $condition: ModelSeminarConditionInput
   ) {
-    deleteTeacher(input: $input, condition: $condition) {
+    deleteSeminar(input: $input, condition: $condition) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const createStudent = /* GraphQL */ `
-  mutation CreateStudent(
-    $input: CreateStudentInput!
-    $condition: ModelStudentConditionInput
+export const createLesson = /* GraphQL */ `
+  mutation CreateLesson(
+    $input: CreateLessonInput!
+    $condition: ModelLessonConditionInput
   ) {
-    createStudent(input: $input, condition: $condition) {
+    createLesson(input: $input, condition: $condition) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const updateStudent = /* GraphQL */ `
-  mutation UpdateStudent(
-    $input: UpdateStudentInput!
-    $condition: ModelStudentConditionInput
+export const updateLesson = /* GraphQL */ `
+  mutation UpdateLesson(
+    $input: UpdateLessonInput!
+    $condition: ModelLessonConditionInput
   ) {
-    updateStudent(input: $input, condition: $condition) {
+    updateLesson(input: $input, condition: $condition) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const deleteStudent = /* GraphQL */ `
-  mutation DeleteStudent(
-    $input: DeleteStudentInput!
-    $condition: ModelStudentConditionInput
+export const deleteLesson = /* GraphQL */ `
+  mutation DeleteLesson(
+    $input: DeleteLessonInput!
+    $condition: ModelLessonConditionInput
   ) {
-    deleteStudent(input: $input, condition: $condition) {
+    deleteLesson(input: $input, condition: $condition) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
@@ -94,24 +115,38 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }
@@ -124,24 +159,38 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }
@@ -154,24 +203,38 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }

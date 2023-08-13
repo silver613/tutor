@@ -2,27 +2,27 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTeacher = /* GraphQL */ `
-  query GetTeacher($id: ID!) {
-    getTeacher(id: $id) {
+export const getSeminar = /* GraphQL */ `
+  query GetSeminar($id: ID!) {
+    getSeminar(id: $id) {
       id
-      testTeacher
+      userID
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const listTeachers = /* GraphQL */ `
-  query ListTeachers(
-    $filter: ModelTeacherFilterInput
+export const listSeminars = /* GraphQL */ `
+  query ListSeminars(
+    $filter: ModelSeminarFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTeachers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listSeminars(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        testTeacher
+        userID
         createdAt
         updatedAt
         __typename
@@ -32,27 +32,102 @@ export const listTeachers = /* GraphQL */ `
     }
   }
 `;
-export const getStudent = /* GraphQL */ `
-  query GetStudent($id: ID!) {
-    getStudent(id: $id) {
+export const seminarsByUserID = /* GraphQL */ `
+  query SeminarsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelSeminarFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    seminarsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getLesson = /* GraphQL */ `
+  query GetLesson($id: ID!) {
+    getLesson(id: $id) {
       id
-      testStudent
+      userID
+      title
+      price
+      currency
+      type
+      category
+      description
+      languages
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const listStudents = /* GraphQL */ `
-  query ListStudents(
-    $filter: ModelStudentFilterInput
+export const listLessons = /* GraphQL */ `
+  query ListLessons(
+    $filter: ModelLessonFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listLessons(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        testStudent
+        userID
+        title
+        price
+        currency
+        type
+        category
+        description
+        languages
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const lessonsByUserID = /* GraphQL */ `
+  query LessonsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelLessonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    lessonsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        title
+        price
+        currency
+        type
+        category
+        description
+        languages
         createdAt
         updatedAt
         __typename
@@ -67,24 +142,38 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       cognitoUserID
-      Student {
-        id
-        testStudent
-        createdAt
-        updatedAt
+      balance
+      Lessons {
+        items {
+          id
+          userID
+          title
+          price
+          currency
+          type
+          category
+          description
+          languages
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
-      Teacher {
-        id
-        testTeacher
-        createdAt
-        updatedAt
+      Seminars {
+        items {
+          id
+          userID
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
         __typename
       }
       createdAt
       updatedAt
-      userStudentId
-      userTeacherId
       __typename
     }
   }
@@ -99,24 +188,38 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         cognitoUserID
-        Student {
-          id
-          testStudent
-          createdAt
-          updatedAt
+        balance
+        Lessons {
+          items {
+            id
+            userID
+            title
+            price
+            currency
+            type
+            category
+            description
+            languages
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
           __typename
         }
-        Teacher {
-          id
-          testTeacher
-          createdAt
-          updatedAt
+        Seminars {
+          items {
+            id
+            userID
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
           __typename
         }
         createdAt
         updatedAt
-        userStudentId
-        userTeacherId
         __typename
       }
       nextToken
